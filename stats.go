@@ -11,6 +11,7 @@ func RoundUp64(x float64, n int) float64 {
 	return math.Ceil((x * roundFactor)) / roundFactor
 }
 
+// RoundUp32 is 32 bit version of RoundUp64
 func RoundUp32(x float32, n int) float32 {
 	roundFactor := math.Pow10(n)
 
@@ -24,6 +25,7 @@ func RoundDown64(x float64, n int) float64 {
 	return math.Floor((x * roundFactor)) / roundFactor
 }
 
+// RoundDown32 is 32 bit version of RoundUp64
 func RoundDown32(x float32, n int) float32 {
 	roundFactor := math.Pow10(n)
 
@@ -45,6 +47,7 @@ func SimpleAvg64(xs []float64) float64 {
 	return sum / float64(len(xs))
 }
 
+// SimpleAvg32 is 32 bit version of SimpleAvg64
 func SimpleAvg32(xs []float32) float32 {
 	if len(xs) == 0 {
 		return 0.0
@@ -77,6 +80,7 @@ func Variance64(xs []float64) float64 {
 	return total / float64(len(xs))
 }
 
+// Variance32 is 32 bit version of Variance64
 func Variance32(xs []float32) float32 {
 	if len(xs) == 0 {
 		return 0.0
@@ -109,6 +113,7 @@ func StdDev64(xs []float64) float64 {
 	return res
 }
 
+// StdDev32 is 32 bit version of StdDev64
 func StdDev32(xs []float32) float32 {
 	if xs == nil || len(xs) == 0 {
 		return 0.0
@@ -169,6 +174,7 @@ func EwmaSeries64(series []float64, y float64, lb int) []float64 {
 	return ewmas
 }
 
+// EwmaSeries32 is 32 bit version of EwmaSeries64
 func EwmaSeries32(series []float32, y float32, lb int) []float32 {
 	if series == nil || len(series) == 0 {
 		return nil
@@ -216,6 +222,7 @@ func RollingEMA64(v float64, last float64, y float64) float64 {
 	return v*y + (1-y)*last
 }
 
+// RollingEMA32 is 32 bit version of RollingEMA64
 func RollingEMA32(v float32, last float32, y float32) float32 {
 	return v*y + (1-y)*last
 }

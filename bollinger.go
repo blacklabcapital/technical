@@ -9,13 +9,14 @@ package technical
 * above and below the center line scaled by some standard deviation.
  */
 
-// A Bound represents a pair of lower and upper values and a midpoint.
+// Bound64 represents a pair of lower and upper values and a midpoint
 type Bound64 struct {
 	Lower    float64 `json:"lower"`
 	Midpoint float64 `json:"midpoint"`
 	Upper    float64 `json:"upper"`
 }
 
+// Bound32 is a 32 bit version of Bound54
 type Bound32 struct {
 	Lower    float32 `json:"lower"`
 	Midpoint float32 `json:"midpoint"`
@@ -31,6 +32,7 @@ func RoundBoundToNearestCent64(b *Bound64) {
 	b.Lower = RoundDown64(b.Lower, 2)
 }
 
+// RoundBoundtoNearestCent32 is 32 bit version of RoundBoundtoNearestCent64
 func RoundBoundToNearestCent32(b *Bound32) {
 	// ceil upper
 	b.Upper = RoundUp32(b.Upper, 2)
@@ -46,20 +48,21 @@ func CompareBound64(first *Bound64, second *Bound64) bool {
 
 	if firstBoundRange > secondBoundRange {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
+// CompareBound32 is 32 bit version of CompareBound64
 func CompareBound32(first *Bound32, second *Bound32) bool {
 	firstBoundRange := first.Upper - first.Lower
 	secondBoundRange := second.Upper - second.Lower
 
 	if firstBoundRange > secondBoundRange {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
 // BollBound64 creates a float64 Bollinger Bound for the given period
@@ -81,6 +84,7 @@ func BollBound64(period []float64, k float64, a float64) Bound64 {
 	return b
 }
 
+// BollBound32 is 32 bit version of BollBound64
 func BollBound32(period []float32, k float32, a float32) Bound32 {
 	var b Bound32
 
@@ -105,6 +109,7 @@ func RollingBollingerConst64(period []float64, k float64, a float64) Bound64 {
 	return BollBound64(period, k, a)
 }
 
+// RollingBollingerConst32 is 32 bit version of RollingBollingerConst64
 func RollingBollingerConst32(period []float32, k float32, a float32) Bound32 {
 	return BollBound32(period, k, a)
 }
@@ -124,6 +129,7 @@ func RollingBollingerSMA64(period []float64, a float64) Bound64 {
 	return BollBound64(period, SimpleAvg64(period), a)
 }
 
+// RollingBollingerSMA32 is 32 bit version of ROllingBollingerSMA64
 func RollingBollingerSMA32(period []float32, a float32) Bound32 {
 	if period == nil || len(period) == 0 {
 		return Bound32{}
@@ -158,6 +164,7 @@ func RollingBollingerEMA64(period []float64, y float64, v float64, last float64,
 	return BollBound64(period, k, a)
 }
 
+// RollingBollingerEMA32 is 32 bit version of RollingBollingerEMA64
 func RollingBollingerEMA32(period []float32, y float32, v float32, last float32, a float32) Bound32 {
 	var (
 		b Bound32
@@ -188,7 +195,7 @@ func StaticBollingerConst64(series []float64, lb int, k float64, a float64) []Bo
 	}
 
 	band := make([]Bound64, len(series))
-	for i, _ := range series {
+	for i := range series {
 		j := i + 1 // offset by 1 bc of idx
 		if j < lb {
 			band[i] = Bound64{}
@@ -201,13 +208,14 @@ func StaticBollingerConst64(series []float64, lb int, k float64, a float64) []Bo
 	return band
 }
 
+// StaticBollingerConst32 is 32 bit version of StaticBollingerConst64
 func StaticBollingerConst32(series []float32, lb int, k float32, a float32) []Bound32 {
 	if series == nil || len(series) == 0 {
 		return nil
 	}
 
 	band := make([]Bound32, len(series))
-	for i, _ := range series {
+	for i := range series {
 		j := i + 1 // offset by 1 bc of idx
 		if j < lb {
 			band[i] = Bound32{}
@@ -234,7 +242,7 @@ func StaticBollingerSMA64(series []float64, lb int, a float64) []Bound64 {
 	}
 
 	band := make([]Bound64, len(series))
-	for i, _ := range series {
+	for i := range series {
 		j := i + 1 // offset by 1 bc of idx
 		if j < lb {
 			band[i] = Bound64{}
@@ -249,13 +257,14 @@ func StaticBollingerSMA64(series []float64, lb int, a float64) []Bound64 {
 	return band
 }
 
+// StaticBollingerSMA32 is 32 bit version of StaticBollingerSMA64
 func StaticBollingerSMA32(series []float32, lb int, a float32) []Bound32 {
 	if series == nil || len(series) == 0 {
 		return nil
 	}
 
 	band := make([]Bound32, len(series))
-	for i, _ := range series {
+	for i := range series {
 		j := i + 1
 		if j < lb {
 			band[i] = Bound32{}
@@ -317,6 +326,7 @@ func StaticBollingerEMA64(series []float64, lb int, y float64, a float64) []Boun
 	return band
 }
 
+// StaticBollingerEMA32 is 32 bit version of StaticBollingerEMA64
 func StaticBollingerEMA32(series []float32, lb int, y float32, a float32) []Bound32 {
 	if series == nil || len(series) == 0 {
 		return nil

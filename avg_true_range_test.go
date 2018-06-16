@@ -64,7 +64,7 @@ func TestStaticATR64(t *testing.T) {
 
 	// full day series test
 	// read in test series file
-	testseries := make([]float64, 0)
+	var testseries []float64
 	f, err := os.Open("./mock/test_atr_series.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -104,7 +104,7 @@ func TestStaticATR32(t *testing.T) {
 
 	// full day series test
 	// read in test series file
-	testseries := make([]float32, 0)
+	var testseries []float32
 	f, err := os.Open("./mock/test_atr_series.txt")
 	if err != nil {
 		log.Fatal(err)

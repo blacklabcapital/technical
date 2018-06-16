@@ -202,7 +202,7 @@ func TestEwmaSeries64(t *testing.T) {
 
 	// full data series on lb = 600, decay = default
 	// read in test series file
-	testseries := make([]float64, 0)
+	var testseries []float64
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -254,7 +254,7 @@ func TestEwmaSeries32(t *testing.T) {
 
 	// full data series on lb = 600, decay = default
 	// read in test series file
-	testseries := make([]float32, 0)
+	var testseries []float32
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)

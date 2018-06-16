@@ -51,6 +51,7 @@ func TrueRange64(period []float64, last float64) float64 {
 	return v
 }
 
+// TrueRange32 is 32 bit version of TrueRange64
 func TrueRange32(period []float32, last float32) float32 {
 	if len(period) == 0 {
 		return 0.0
@@ -99,6 +100,7 @@ func RollingATR64(lastATR float64, curTR float64, n int) float64 {
 	return (lastATR*float64(n-1) + curTR) / float64(n)
 }
 
+// RollingATR32 is 32 bit version of RollingATR64
 func RollingATR32(lastATR float32, curTR float32, n int) float32 {
 	if n == 0 {
 		return 0.0
@@ -122,7 +124,7 @@ func StaticATR64(series []float64, n int, s int) float64 {
 		return 0.0
 	}
 
-	trngs := make([]float64, 0)
+	var trngs []float64
 
 	// iterate over the series in period size parts and compute true ranges
 	for i := 0; i < len(series); i += s {
@@ -159,12 +161,13 @@ func StaticATR64(series []float64, n int, s int) float64 {
 	return atr
 }
 
+// StaticATR32 is 32 bit version of StaticATR64
 func StaticATR32(series []float32, n int, s int) float32 {
 	if n == 0 || s == 0 {
 		return 0.0
 	}
 
-	trngs := make([]float32, 0)
+	var trngs []float32
 
 	// iterate over the series in period size parts and compute true ranges
 	for i := 0; i < len(series); i += s {

@@ -247,7 +247,7 @@ func TestRollingBollingerEMA64(t *testing.T) {
 
 	// test full test series on rolling ewma
 	// read in test series file
-	testseries := make([]float64, 0)
+	var testseries []float64
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -329,7 +329,7 @@ func TestRollingBollingerEMA32(t *testing.T) {
 	assert.Equal(t, float32(15.767965), b.Upper)
 
 	// read in test series file
-	testseries := make([]float32, 0)
+	var testseries []float32
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -448,7 +448,7 @@ func TestStaticBollingerEMA64(t *testing.T) {
 	var band []Bound64
 
 	// read in test series file
-	testseries := make([]float64, 0)
+	var testseries []float64
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -477,7 +477,7 @@ func TestStaticBollingerEMA32(t *testing.T) {
 	var band []Bound32
 
 	// read in test series file
-	testseries := make([]float32, 0)
+	var testseries []float32
 	f, err := os.Open("./mock/test_series.txt")
 	if err != nil {
 		log.Fatal(err)
