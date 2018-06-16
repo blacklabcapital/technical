@@ -1,6 +1,7 @@
 # technical
 
 [![CircleCI](https://circleci.com/gh/blacklabcapital/technical.svg?style=svg)](https://circleci.com/gh/blacklabcapital/technical)
+[![GoDoc](https://godoc.org/github.com/blacklabcapital/technical?status.svg)](https://godoc.org/github.com/blacklabcapital/technical)
 
 ## Description
 
@@ -27,12 +28,12 @@ The main indicators (currently) explicitly implemented are:
 - **Bollinger Bands**
 - **Average True Range**
 
-Various other indicators can be trvially composed with the included stats functions, such as a Simple Moving Average.
+Various other indicators can be trivially composed with the included stats functions, such as a Simple Moving Average.
 
 ## Contributing
 
 `master` holds the latest current stable version of technical. Commits with a minor version are guaranteed to have no breaking API changes, only feature additions and bug fixes.
 
-`dev` holds the latest commits and is where active developmemnt takes place. If you submit a pull request it should be against the `dev` branch.
+`dev` holds the latest commits and is where active development takes place. If you submit a pull request it should be against the `dev` branch.
 
 `<major.minor>` are version branches. Tested changes from `dev` are staged for a release by merging into the appropriate version branch.
